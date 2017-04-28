@@ -12,7 +12,8 @@ nodo *pila = NULL;
 nodo *inicio = NULL;
 nodo *fin = NULL;
 
-/*FUNCIONES GENERALES*/
+/** FUNCIONES GENERALES*/
+void texto_subMenu(); /** INVOCA EL SUBMENU PARA TODOS LOS SWITCH */
 void crear ();
 bool lista_vacia (nodo *);
 void buscar_elementos();
@@ -21,29 +22,29 @@ void editar ();
 void vaciar_elementos ();
 void eliminar_lista ();//??????????
 
-/*FUNCIONES LISTAS LIFO O PILAS:   */
+/** FUNCIONES LISTAS LIFO O PILAS:   */
 void insertar_pila ();
 void imprimir_pila ();
 
 
-/* FUNCIONES LISTAS FIFO O COLAS Y ANEXAS A LISTAS SIMPLEMENTE ENLAZADAS:    */
+/** FUNCIONES LISTAS FIFO O COLAS Y ANEXAS A LISTAS SIMPLEMENTE ENLAZADAS:    */
 void insertar_cola ();
 void imprimir_cola ();
 
-/* FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS   */
+/** FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS   */
 void insertar_circularSimple();
 void imprimir_circularSimple();
 void buscar_circularSimple();
 void editar_circularSimple();
 void eliminar_circularSimple();
 
-/* FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS  */
+/** FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS  */
 void insertar_circularDoble();
 void imprimir_asc();
 void imprimir_desc();
 void eliminar_circularDoble();
 
-/* FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
+/** FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
 void insertar_listaDoble();
 void imprimir_asc_listaDoble();
 void imprimir_desc_listaDoble();
@@ -62,8 +63,7 @@ void menu(){
 
     int opc, salir=1;
 
-    do{
-        printf("\n  ********** MENU LISTAS **********\n\n");
+    do{ printf("\n  ********** MENU LISTAS **********\n\n");
         printf("  1. LISTAS LIFO.\n");
         printf("  2. LISTAS FIFO.\n");
         printf("  3. LISTA CIRCULAR SIMPLEMENTE ENLAZADA.\n");
@@ -85,54 +85,37 @@ void menu(){
 
             system("cls");
         do{ printf("\n  ********** MENU LISTAS LIFO **********\n\n");
-            printf("  1. Crear lista. \n");
-            printf("  2. Insertar elementos. \n");
-            printf("  3. Imprimir elementos. \n");
-            printf("  4. Buscar elementos. \n");
-            printf("  5. Eliminar elementos. \n");
-            printf("  6. Editar elementos. \n");
-            printf("  7. Vaciar elementos. \n");
-            printf("  8. Lista vacia. \n");
-            printf("  9. Eliminar lista. \n");
-            printf("  0. Volver al menu anterior. \n\n");
+            texto_subMenu();
+
             printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
             switch(opc){
 
-                case 1:
-                    crear ();
+                case 1: crear ();
                     break;
 
-                case 2:
-                    insertar_pila();
+                case 2: insertar_pila();
                     break;
 
-                case 3:
-                    imprimir_pila();
+                case 3: imprimir_pila();
                     break;
 
-                case 4:
-                    buscar_elementos();
+                case 4: buscar_elementos();
                     break;
 
-                case 5:
-                    eliminar_elementos ();
+                case 5: eliminar_elementos ();
                     break;
 
-                case 6:
-                    editar();
+                case 6: editar();
                     break;
 
-                case 7:
-                    vaciar_elementos();
+                case 7: vaciar_elementos();
                     break;
 
-                case 8:
-                    lista_vacia(pila);
+                case 8: lista_vacia(pila);
                     break;
 
-                case 9:
-                    eliminar_lista();
+                case 9: eliminar_lista();
                     break;
 
                 case 0:
@@ -151,17 +134,9 @@ void menu(){
             case 2: //MENU LISTAS FIFO
 
                 system("cls");
-                printf("\n  ********** MENU LISTAS FIFO **********\n\n");
-                printf("  1. Crear lista. \n");
-                printf("  2. Insertar elementos. \n");
-                printf("  3. Imprimir elementos. \n");
-                printf("  4. Buscar elementos. \n");
-                printf("  5. Eliminar elementos. \n");
-                printf("  6. Editar elementos. \n");
-                printf("  7. Vaciar elementos. \n");
-                printf("  8. Lista vacia. \n");
-                printf("  9. Eliminar lista. \n");
-                printf("  0. Volver al menu anterior. \n\n");
+            do{ printf("\n  ********** MENU LISTAS FIFO **********\n\n");
+                texto_subMenu();
+
                 printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
                 switch(opc){
@@ -199,11 +174,13 @@ void menu(){
                         break;
 
                     case 0:
+                        system("cls");
                         menu();
                         break;
                     default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                         break;
                 }
+                }while(salir!=0);
                 break;
 
 //********************************************************************************************
@@ -211,17 +188,9 @@ void menu(){
             case 3: //LISTA CIRCULAR SIMPLEMENTE ENLAZADA
 
                 system("cls");
-                printf("\n ***** MENU LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS *****\n\n");
-                printf("  1. Crear lista. \n");
-                printf("  2. Insertar elementos. \n");
-                printf("  3. Imprimir elementos. \n");
-                printf("  4. Buscar elementos. \n");
-                printf("  5. Eliminar elementos. \n");
-                printf("  6. Editar elementos. \n");
-                printf("  7. Vaciar elementos. \n");
-                printf("  8. Lista vacia. \n");
-                printf("  9. Eliminar lista. \n");
-                printf("  0. Volver al menu anterior. \n\n");
+            do{ printf("\n ***** MENU LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS *****\n\n");
+                texto_subMenu();
+
                 printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
                 switch(opc){
@@ -263,12 +232,14 @@ void menu(){
                         break;
 
                     case 0:
+                        system("cls");
                         menu();
                         break;
 
                     default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                         break;
                 }
+            }while(salir!=0);
                 break;
 
 //************************************************************************************************************
@@ -276,17 +247,9 @@ void menu(){
             case 4:  //MENU LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
 
                 system("cls");
-                printf("\n ***** MENU LISTAS CIRCULARES DOBLEMENTE ENLAZADAS *****\n\n");
-                printf("1. Crear lista. \n");
-                printf("2. Insertar elementos. \n");
-                printf("3. Imprimir elementos. \n");
-                printf("4. Buscar elementos. \n");
-                printf("5. Eliminar elementos. \n");
-                printf("6. Editar elementos. \n");
-                printf("7. Vaciar elementos. \n");
-                printf("8. Lista vacia. \n");
-                printf("9. Eliminar lista. \n");
-                printf("0. Volver al menu principal. \n\n");
+            do{ printf("\n ***** MENU LISTAS CIRCULARES DOBLEMENTE ENLAZADAS *****\n\n");
+                texto_subMenu();
+
                 printf("Ingrese una opcion: "); scanf("%d", &opc);
 
                 switch(opc){
@@ -341,12 +304,14 @@ void menu(){
                         eliminar_lista();
                         break;
                     case 0:
+                        system("cls");
                         menu();
                         break;
 
                     default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                         break;
                 }
+                }while(salir!=0);
                 break;
 
 //************************************************************************************************************************
@@ -354,17 +319,9 @@ void menu(){
             case 5:   //MENU LISTAS SIMPLEMENTE ENLAZADAS
 
                 system("cls");
-                printf("\n ***** MENU LISTAS SIMPLEMENTE ENLAZADAS *****\n\n");
-                printf("  1. Crear lista. \n");
-                printf("  2. Insertar elementos. \n");
-                printf("  3. Imprimir elementos. \n");
-                printf("  4. Buscar elementos. \n");
-                printf("  5. Eliminar elementos. \n");
-                printf("  6. Editar elementos. \n");
-                printf("  7. Vaciar elementos. \n");
-                printf("  8. Lista vacia. \n");
-                printf("  9. Eliminar lista. \n");
-                printf("  0. Volver al menu anterior. \n\n");
+            do{ printf("\n ***** MENU LISTAS SIMPLEMENTE ENLAZADAS *****\n\n");
+                texto_subMenu();
+
                 printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
                 switch(opc){
@@ -405,11 +362,13 @@ void menu(){
                             break;
 
                         case 0:
+                            system("cls");
                             menu();
                             break;
                         default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                             break;
                 }
+                }while(salir!=0);
                 break;
 
 //***********************************************************************************************************
@@ -417,17 +376,9 @@ void menu(){
             case 6: //MENU LISTAS DOBLEMENTE ENLAZADAS
 
                 system("cls");
-                printf("\n***** MENU LISTAS DOBLEMENTE ENLAZADAS *****\n\n");
-                printf("  1. Crear lista. \n");
-                printf("  2. Insertar elementos. \n");
-                printf("  3. Imprimir elementos. \n");
-                printf("  4. Buscar elementos. \n");
-                printf("  5. Eliminar elementos. \n");
-                printf("  6. Editar elementos. \n");
-                printf("  7. Vaciar elementos. \n");
-                printf("  8. Lista vacia. \n");
-                printf("  9. Eliminar lista. \n");
-                printf("  0. Volver al menu anterior. \n\n");
+            do{ printf("\n***** MENU LISTAS DOBLEMENTE ENLAZADAS *****\n\n");
+                texto_subMenu();
+
                 printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
                         switch(opc){
@@ -436,12 +387,14 @@ void menu(){
                                 break;
 
                             case 0:
+                                system("cls");
                                 menu();
                                 break;
 
                             default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                                 break;
                         }
+            }while(salir!=0);
                         break;
 
 //***********************************************************************************************************
@@ -449,7 +402,7 @@ void menu(){
             case 7:  //MENU DE OPERACIONES
 
                 system("cls");
-                printf("\n  ********** MENU DE OPERACIONES **********\n\n");
+            do{ printf("\n  ********** MENU DE OPERACIONES **********\n\n");
                 printf("  1. Concatenar dos listas. \n");
                 printf("  2. Sumar dos listas. \n");
                 printf("  3. Dividir dos listas. \n");
@@ -461,11 +414,13 @@ void menu(){
 
                     switch(opc){
                         case 0:
+                            system("cls");
                             menu();
-
+                            break;
                         default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                             break;
                     }
+            }while(salir!=0);
 
 
 //********************************************************************************************
@@ -482,17 +437,30 @@ void menu(){
 //************************************************************************************
 
 
-/*FUNCIONES GENERALES:      */
+/**FUNCIONES GENERALES:      */
 
-void crear (){
+void texto_subMenu(){   /** INVOCA EL SUBMENU PARA TODOS LOS SWITCH */
+        printf("  1.    Crear lista. \n");
+        printf("  2.    Insertar elementos. \n");
+        printf("  3.    Imprimir elementos. \n");
+        printf("  4.    Buscar elementos. \n");
+        printf("  5.    Eliminar elementos. \n");
+        printf("  6.    Editar elementos. \n");
+        printf("  7.    Vaciar elementos. \n");
+        printf("  8.    Lista vacia. \n");
+        printf("  9.    Eliminar lista. \n");
+        printf("  0.    Volver al menu anterior. \n\n");
+}
+
+void crear (){  /** CREAR O INICIALIZAR LA PILA */
     printf("\n\n LA PILA SE INICIO CORRECTAMENTE.\n\n");
 }
 
-bool lista_vacia(nodo *pila){
+bool lista_vacia(nodo *pila){   /** VERIFICAR SI LA PILA ESTA VACIA */
     return (pila==NULL)?true: false;
 }
 
-void buscar_elementos (){
+void buscar_elementos (){   /** BUSCAR ELEMENTOS EN LAS LISTAS */
 
     int buscar=0;
     bool encontrado=false;
@@ -514,7 +482,7 @@ void buscar_elementos (){
 
 }
 
-void eliminar_elementos (){
+void eliminar_elementos (){ /** ELIMINAR ELEMENTOS DE LAS LISTAS */
 
     int buscar=0;
     bool encontrado=false;
@@ -548,7 +516,7 @@ void eliminar_elementos (){
     }
 }
 
-void editar (){
+void editar (){ /** MODIFICAR ELEMENTOS DE LAS LISTAS */
 
     int buscar=0;
     bool encontrado=false;
@@ -573,15 +541,15 @@ void editar (){
     }
 }
 
-void vaciar_elementos(){
+void vaciar_elementos(){    /** VACIAR ELEMENTOS DE LA LISTA */
 }
 
-void eliminar_lista(){
+void eliminar_lista(){  /** ELIMINAR TODA LA LISTA */
 }
 
 
 
-//FUNCIONES DE LISTAS LIFO O PILAS:
+/** FUNCIONES DE LISTAS LIFO O PILAS:       */
 
 void insertar_pila (){
     int n=1;
@@ -592,25 +560,24 @@ void insertar_pila (){
     }
     nuevo_nodo->siguiente = pila;
     pila = nuevo_nodo;
+    system("cls");
 }
 
 void imprimir_pila (){
 
-    nodo* actual = (nodo*) malloc(sizeof(nodo));
-    actual = pila;
-    if(pila != NULL){
-        while(actual != NULL){
-            printf("\n     %d", actual -> dato);
-            actual = actual -> siguiente;
-        }
-    }else{
-        printf("\n\nLA PILA SE ENCUENTRA VACIA");
-    }
+    nodo *actual = reservar_memoria;
+     actual = pila;
+     if(pila != NULL){
+         while(actual != NULL);{
+             printf("    %d", actual -> dato);
+             actual = actual -> siguiente; }
+     }else{
+        printf("\n  La pila esta vacia! \n\n"); }
 }
 
 
 
-// FUNCIONES PARA LAS LISTAS FIFO O COLAS:
+/**** FUNCIONES PARA LAS LISTAS FIFO O COLAS: ****/
 
 void insertar_cola (){
 
@@ -640,122 +607,133 @@ void imprimir_cola (){
     }else{  printf("\n  La cola esta vacia. \n\n"); }
 }
 
-//FUNCIONES PARA LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS
 
-void insertar_circularSimple(){
+/*****  FUNCIONES PARA LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS  ******/
+
+void insertar_circularSimple(){ /**INGRESAR ELEMENTOS A LA LISTA CIRCULAR SIMPLEMENTE ENLAZADA*/
 
     nodo* nuevo_nodo = reservar_memoria;
 
     printf("\n\n    Insertar el numero que desea ingresar: "); scanf("%d", &nuevo_nodo->dato);
 
-    if(lista_vacia(inicio)){
+    if(inicio == NULL){
         inicio = nuevo_nodo;
-        inicio->siguiente = NULL;
-        fin=nuevo_nodo;
+        inicio->siguiente = inicio;
+        fin=inicio;
     }else{
         fin->siguiente = nuevo_nodo;
-        nuevo_nodo->siguiente=NULL;
+        nuevo_nodo->siguiente=inicio;
         fin = nuevo_nodo; }
 
     printf("\n  Ingresado con exito! \n\n");
 }
 
-void imprimir_circularSimple(){
+void imprimir_circularSimple(){ /** IMPRIMIR ELEMENTOS DE LA LISTA CIRCULAR SIMPLEMENTE ENLAZADA */
 
-    if(primero != NULL){
+    nodo* actual = reservar_memoria;
+    actual = inicio;
+
+    if(inicio != NULL){
         do{
-            printf("\n  %d", inicio->dato);
-            inicio=inicio->siguiente;
-        }while(inicio!=primero);
+            printf("\n  %d", actual->dato);
+            actual = actual->siguiente;
+        }while(actual!=inicio);
     }else{
         printf("\n  La lista circular esta vacia! \n\n");
     }
 }
 
-void buscar_circularSimple(){
+void buscar_circularSimple(){ /**BUSCAR ELEMENTOS EN LA LISTA CIRCULAR SIMPLEMENTE ENLAZADA*/
 
     int buscar=0;
     bool encontrado=false;
+
+    nodo* actual = reservar_memoria;
+    actual = inicio;
 
     printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
 
-    if(primero != NULL){
+    if(inicio != NULL){
         do{
-            if(inicio->dato == buscar){
+            if(actual->dato == buscar){
                 printf("\n\n El numero ( %d ) se encuentra en la lista. ", buscar);
                 encontrado=true;
             }
-            inicio=inicio -> siguiente;
+            actual = actual -> siguiente;
         }
-        while(inicio != primero && encontrado != true);
+        while(actual != inicio && encontrado != true);
             if(encontrado == false){
-                printf("\n  El numero (%d) no se encuentra en la lista.\n\n");
+                printf("\n  El numero (%d) no se encuentra en la lista. ", buscar);
             }
     }else{
         printf("\n  La lista circular esta vacia! \n\n");
     }
 }
 
-void editar_circularSimple(){
+void editar_circularSimple(){ /** MODIFICAR ELEMENTOS DE LA LISTA CIRCULAR SIMPLEMENTE ENLAZADA*/
 
     int buscar=0;
     bool encontrado=false;
 
+    nodo* actual = reservar_memoria;
+    actual = inicio;
+
     printf("\n  Ingrese el numero que desea editar: "); scanf("%d", &buscar);
-    if(primero != NULL){
+    if(inicio != NULL){
         do{
-            if(inicio->dato == buscar){
+            if(actual->dato == buscar){
                 printf("\n\n El numero ( %d ) se encuentra en la lista. ", buscar);
-                printf("\n  Ingrese el nuevo numero: "); scanf("%d", &inicio->dato);
-                printf("\n  El numero (%d) se modifico con exito! \n\n");
+                printf("\n  Ingrese el nuevo numero: "); scanf("%d", &actual->dato);
+                printf("\n  El numero (%d) se modifico con exito! \n\n", buscar);
                 encontrado = true;
             }
-            inicio=inicio -> siguiente;
-        }while(inicio != primero && encontrado != true);
+            actual = actual -> siguiente;
+        }while(actual != inicio && encontrado != true);
         if(encontrado == false){
-            printf("\n  El numero (%d) no se encuentra en la lista.\n\n");
+            printf("\n  El numero (%d) no se encuentra en la lista.\n\n", buscar);
             }
     }else{ printf("\n  La lista circular esta vacia! \n\n"); }
 }
 
-void eliminar_circularSimple(){
+void eliminar_circularSimple(){ /** ELIMINAR ELEMENTOS DE LA LISTA CIRCULAR SIMPLEMENTE ENLAZADA*/
 
     int buscar=0;
     bool encontrado=false;
 
+    nodo* actual = reservar_memoria;
+    actual = inicio;
     nodo* anterior = reservar_memoria;
     anterior = NULL;
 
 
     printf("\n  Ingrese el dato del nodo que desea eliminar: "); scanf("%d", &buscar);
 
-    if(primero != NULL){
+    if(inicio!= NULL){
 
         do{
-            if(inicio->dato == buscar){
-                if(inicio == primero){
-                    primero = primero -> siguiente;
-                    fin -> siguiente = primero;
-                }else if(inicio == fin){
-                    anterior -> siguiente = primero;
+            if(actual->dato == buscar){
+                if(actual == inicio){
+                    inicio = inicio -> siguiente;
+                    fin -> siguiente = inicio;
+                }else if(actual == fin){
+                    anterior -> siguiente = inicio;
                     fin = anterior;
-                }else{ anterior -> siguiente = inicio -> siguiente; }
+                }else{ anterior -> siguiente = actual -> siguiente; }
 
-                printf("\n  El numero (%d) ha sido eliminado con exito! \n\n");
+                printf("\n  El numero (%d) ha sido eliminado con exito! \n\n", buscar);
                 encontrado = true;
             }
-            anterior = inicio;
-            inicio = inicio -> siguiente;
-        }while(inicio != primero && encontrado != true);
-
+            anterior = actual;
+            actual=actual-> siguiente;
+        }while(actual != inicio && encontrado != true);
         if(encontrado == false){
-            printf("\n  El numero (%d) no se encuenta \n");
+            printf("\n  El numero (%d) no se encuenta \n", buscar);
         }else{ free(anterior); }
     }else{ printf("\n   La lista circular esta vacia! \n\n"); }
 }
 
 
-//FUNCIONES PARA LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
+/** FUNCIONES PARA LISTAS CIRCULARES DOBLEMENTE ENLAZADAS */
 
 void insertar_circularDoble(){
     nodo* nuevo_nodo = reservar_memoria;
@@ -843,7 +821,7 @@ void eliminar_circularDoble(){
 }
 
 
-//FUNCIONES LISTAS DOBLEMENTE ENLAZADAS
+/** FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
 
 void insertar_listaDoble(){
 
