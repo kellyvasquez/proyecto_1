@@ -12,7 +12,7 @@ nodo *pila = NULL;
 nodo *inicio = NULL;
 nodo *fin = NULL;
 
-//FUNCIONES GENERALES
+/*FUNCIONES GENERALES*/
 void crear ();
 bool lista_vacia (nodo *);
 void buscar_elementos();
@@ -21,29 +21,29 @@ void editar ();
 void vaciar_elementos ();
 void eliminar_lista ();//??????????
 
-//FUNCIONES LISTAS LIFO O PILAS:
+/*FUNCIONES LISTAS LIFO O PILAS:   */
 void insertar_pila ();
 void imprimir_pila ();
 
 
-//FUNCIONES LISTAS FIFO O COLAS:
+/*FUNCIONES LISTAS FIFO O COLAS:    */
 void insertar_cola ();
 void imprimir_cola ();
 
-//FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS
+/*FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS   */
 void insertar_circularSimple();
 void imprimir_circularSimple();
 void buscar_circularSimple();
 void editar_circularSimple();
 void eliminar_circularSimple();
 
-//FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
+/*FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS  */
 void insertar_circularDoble();
 void imprimir_asc();
 void imprimir_desc();
 void eliminar_circularDoble();
 
-//FUNCIONES LISTAS DOBLEMENTE ENLAZADAS
+/*FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
 void insertar_listaDoble();
 
 void menu();
@@ -475,7 +475,7 @@ void menu(){
 //************************************************************************************
 
 
-//FUNCIONES GENERALES:
+/*FUNCIONES GENERALES:      */
 
 void crear (){
     printf("\n\n LA PILA SE INICIO CORRECTAMENTE.\n\n");
@@ -574,9 +574,8 @@ void eliminar_lista(){
 
 
 
-
-
 //FUNCIONES DE LISTAS LIFO O PILAS:
+
 void insertar_pila (){
     nodo *nuevo_nodo = reservar_memoria;
     printf("    Que numero desea insertar en la pila? \n\n");
@@ -599,6 +598,7 @@ void imprimir_pila (){
 
 
 // FUNCIONES PARA LAS LISTAS FIFO O COLAS:
+
 void insertar_cola (){
 
     nodo *nuevo_nodo = reservar_memoria;
@@ -628,6 +628,7 @@ void imprimir_cola (){
 }
 
 //FUNCIONES PARA LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS
+
 void insertar_circularSimple(){
 
     nodo* nuevo_nodo = reservar_memoria;
@@ -701,9 +702,7 @@ void editar_circularSimple(){
         if(encontrado == false){
             printf("\n  El numero (%d) no se encuentra en la lista.\n\n");
             }
-    }else{
-        printf("\n  La lista circular esta vacia! \n\n");
-    }
+    }else{ printf("\n  La lista circular esta vacia! \n\n"); }
 }
 
 void eliminar_circularSimple(){
@@ -744,6 +743,7 @@ void eliminar_circularSimple(){
 
 
 //FUNCIONES PARA LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
+
 void insertar_circularDoble(){
     nodo* nuevo_nodo = reservar_memoria;
 
@@ -766,14 +766,11 @@ void insertar_circularDoble(){
 
 void imprimir_asc(){
 
-    nodo *primero = (nodo*) malloc(sizeof(nodo));
-    primero = inicio;
-
     if(inicio != NULL){
         do{
             printf("\n     %d", primero -> dato);
-            primero = primero -> siguiente;
-        }while(primero != inicio);
+            pila = pila -> siguiente;
+        }while(pila != inicio);
     }else{
         printf("\n La lista circular doble esta vacia! \n\n");
     }
@@ -834,6 +831,7 @@ void eliminar_circularDoble(){
 
 
 //FUNCIONES LISTAS DOBLEMENTE ENLAZADAS
+
 void insertar_listaDoble(){
 
     nodo* nuevo_nodo = reservar_memoria;
@@ -854,14 +852,103 @@ void insertar_listaDoble(){
     printf("\n Ingresado con exito! \n\n");
 }
 
+void imprimir_asc_listaDoble(){
 
+    if(inicio != NULL){
+        while(pila != NULL){
+            printf("\n     %d", pila->dato);
+            pila = pila->siguiente; }
+    }else{ printf("\n  La lista doblemente enlazada se encuentra vacia! \n\n"); }
+}
 
+void imprimir_desc_listaDoble(){
 
+    if(primero != NULL){
+        while(fin != NULL){
+            printf("\n     %d", fin->dato);
+            fin = fin->atras; }
+    }else{ printf("\n  La lista doblemente enlazada se encuentra vacia! \n\n"); }
+}
 
+void buscar_listaDoble(){
 
+    int buscar=0;
+    bool encontrado=false;
 
+    printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
 
+    if(primero != NULL){
+        while(inicio != NULL && encontrado != true){
+            if(inicio->dato == buscar){
+                printf("\n  El numero (%d) se encuentra en la lista! \n\n", buscar);
+                encontrado = true;
+            }
+            inicio = inicio->siguiente;
+        } if(encontrado == false){
+                printf("\n  El nodo no ha sido encontrado en la lista! \n\n"); }
+    }else{ printf("\n   La lista doblemente enlazada esta vacia! \n\n"); }
+}
 
+void editar_listaDoble(){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
+
+    if(primero != NULL){
+        while(inicio != NULL){
+            if(inicio->dato == buscar){
+                printf("\n  El numero (%d) se encuentra en la lista", buscar);
+                printf("\n  Ingrese el nuevo numero: "); scanf("%d", &inicio->dato);
+                printf("\n  El numero (%d) se modifico con exito! \n\n");
+                encontrado = true;
+            }
+            inicio = inicio->siguiente;
+        }
+        if(encontrado == false){
+            printf("\n  El numero (%d) no se encuentra en la lista.", buscar); }
+    }else{ printf("\n   La lista doblemente enlazada esta vacia! \n\n"); }
+}
+
+void eliminarNodo(){
+
+    nodo* anterior = (nodo*) malloc(sizeof(nodo));
+    anterior = NULL;
+
+    int buscar=0;
+    bool encontrado=false;
+
+    printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
+
+    if(primero != NULL){
+        while(inicio != NULL && encontrado != 1){
+            if(inicio->dato == buscar){
+                if(inicio == primero){
+                    primero = primero -> siguiente;
+                    primero -> atras = NULL;
+                }else if(inicio == fin){
+                    anterior -> siguiente = NULL;
+                    fin = anterior;
+                }else{
+                    anterior -> siguiente = inicio -> siguiente;
+                    inicio -> siguiente -> atras = anterior;
+                }
+                printf("\nEL NODO HA SIDO BORRADO CON EXITO\n");
+                encontrado = true;
+            }
+            anterior = inicio;
+            inicio = inicio -> siguiente;
+        }
+        if(encontrado == false){
+            printf("\nEL NODO NO HA SIDO ENCONTRADO\n");
+        }else{
+            free(anterior);
+        }
+    }else{
+        printf("\nLA LISTA DOBLE SE ENCUENTRA VACIA\n");
+    }
+}
 
 
 
