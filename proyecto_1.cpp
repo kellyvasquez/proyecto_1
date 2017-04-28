@@ -4,29 +4,47 @@
 
 struct nodo{
     int dato;
-    nodo *siguiente; };
+    nodo *siguiente;
+    nodo *atras; };
+
+nodo *primero = NULL;
+nodo *pila = NULL;
+nodo *inicio = NULL;
+nodo *fin = NULL;
+
+//FUNCIONES GENERALES
+void crear ();
+bool lista_vacia (nodo *);
+void buscar_elementos();
+void eliminar_elementos();
+void editar ();
+void vaciar_elementos ();
+void eliminar_lista ();//??????????
 
 //FUNCIONES LISTAS LIFO O PILAS:
-void crear_pila ();
-void insertar_pila (nodo *&, int);
-void imprimir_pila (nodo *&);
-void buscar_pila ();
-void eliminar_elementos_pila (nodo *&, int &);
-void editar_pila (); // ??????????
-void vaciar_elementos_pila (); //?????????
-bool pila_vacia (nodo *&);
-void eliminar_pila ();//??????????
+void insertar_pila ();
+void imprimir_pila ();
+
 
 //FUNCIONES LISTAS FIFO O COLAS:
-void crear_cola();
-void insertar_cola (nodo *&, nodo *&, int);
-void imprimir_cola (nodo *&, nodo *&);
-bool buscar_cola (nodo *&, nodo *&, int);
-void eliminar_elementos_cola (nodo *&, nodo *&, int &);
-void editar_cola(); // ??????????
-void vaciar_elementos_cola (); //?????????
-bool cola_vacia (nodo *&);
-void eliminar_cola ();
+void insertar_cola ();
+void imprimir_cola ();
+
+//FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS
+void insertar_circularSimple();
+void imprimir_circularSimple();
+void buscar_circularSimple();
+void editar_circularSimple();
+void eliminar_circularSimple();
+
+//FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
+void insertar_circularDoble();
+void imprimir_asc();
+void imprimir_desc();
+void eliminar_circularDoble();
+
+//FUNCIONES LISTAS DOBLEMENTE ENLAZADAS
+void insertar_listaDoble();
 
 void menu();
 
@@ -75,46 +93,47 @@ void menu(){
             printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
             switch(opc){
+
                 case 1:
+                    crear ();
                     break;
+
                 case 2:
+                    insertar_pila();
                     break;
+
                 case 3:
-                    printf("\n\n Como desea mostrar los elementos?: \n\n");
-                    printf("  1. Mostrar el primero elemento. \n");
-                    printf("  2. Mostrar el ultimo elemento. \n");
-                    printf("  3. Mostrar todos los elementos. \n\n");
-                    printf("  Ingrese una opcion: "); scanf("%d", &opc);
+                    imprimir_pila();
+                    break;
 
-                    //SWITCH PARA MOSTRAR ELEMENTOS
-                        switch(opc){
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                            }
-                            break;
-                    //FIN SWITCH PARA MOSTRAR ELEMENTOS
                 case 4:
+                    buscar_elementos();
                     break;
+
                 case 5:
+                    eliminar_elementos ();
                     break;
+
                 case 6:
+                    editar();
                     break;
+
                 case 7:
+                    vaciar_elementos();
                     break;
+
                 case 8:
-
+                    lista_vacia(pila);
                     break;
-                case 9:
 
-                            break;
+                case 9:
+                    eliminar_lista();
+                    break;
+
                 case 0:
                     menu();
                     break;
+
                 default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                     break;
                 }
@@ -140,41 +159,38 @@ void menu(){
 
                 switch(opc){
                     case 1:
+                        insertar_cola();
                         break;
                     case 2:
                         break;
                     case 3:
-
-                        printf("1. Mostrar el primero elemento. \n");
-                        printf("2. Mostrar el ultimo elemento. \n");
-                        printf("3. Mostrar todos los elementos. \n\n");
-                        printf("Ingrese una opcion: "); scanf("%d", &opc);
-
-                        //SWITCH PARA MOSTRAR ELEMENTOS
-                            switch(opc){
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                }
-                        //FIN SWITCH PARA MOSTRAR ELEMENTOS
+                        imprimir_cola();
                         break;
 
                     case 4:
+                        buscar_elementos();
                         break;
+
                     case 5:
+                        eliminar_elementos ();
                         break;
+
                     case 6:
+                        editar();
                         break;
+
                     case 7:
+                        vaciar_elementos();
                         break;
+
                     case 8:
+                        lista_vacia(pila);
                         break;
+
                     case 9:
+                        eliminar_lista();
                         break;
+
                     case 0:
                         menu();
                         break;
@@ -204,76 +220,45 @@ void menu(){
                 switch(opc){
 
                     case 1:
+                        crear();
                         break;
-                    case 2:
-                        printf("\n\n  1. Al inicio.\n");
-                        printf("    2. Al final.\n");
-                        printf("    3. Despues de un nodo.\n");
-                        printf("    4. Antes de un nodo.\n");
-                        printf("    5. En medio de dos nodos.\n");
-                        printf("    6. En forma ascendente.\n");
-                        printf("    7. En forma descendente.\n\n");
-                        printf("    Ingrese una opcion: "); scanf("%d", &opc);
 
-                        //SWICTH PARA INSERTAR ELEMENTOS
-                            switch(opc){
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-                                case 4:
-                                    break;
-                                case 5:
-                                    break;
-                                case 6:
-                                    break;
-                                case 7:
-                                    break;
-                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                    break;
-                            }
-                        //FIN DE SWITCH PARA INSERTAR ELEMENTOS
+                    case 2:
+                        insertar_circularSimple();
                         break;
 
                     case 3:
-                        printf("\n\n    1. Mostrar el primer elememto.\n");
-                        printf("    2. Mostrar el ultimo elemento.\n");
-                        printf("    3. Mostrar todos los elementos.\n");
-                        printf("    4. Mostrar el anterior elemento a un nodo dado.\n\n");
-                        printf("    Ingrese una opcion: "); scanf("%d", &opc);
-
-                        //SWITCH PARA MOSTRAR ELEMENTOS
-                            switch(opc){
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-                                case 4:
-                                    break;
-                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                            }
-                        //FIN DE SWITCH PARA MOSTRAR ELEMENTOS
+                        imprimir_circularSimple();
                         break;
 
                     case 4:
+                        buscar_circularSimple();
                         break;
+
                     case 5:
+                        eliminar_circularSimple();
                         break;
+
                     case 6:
+                        editar_circularSimple();
                         break;
+
                     case 7:
+                        vaciar_elementos();
                         break;
+
                     case 8:
+                        lista_vacia(pila);
                         break;
+
                     case 9:
+                        eliminar_lista();
                         break;
+
                     case 0:
                         menu();
                         break;
+
                     default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                         break;
                 }
@@ -299,75 +284,59 @@ void menu(){
 
                 switch(opc){
                     case 1:
+                        crear();
                         break;
-                    case 2:
-                        printf("\n\n  1. Al inicio.\n");
-                        printf("    2. Al final.\n");
-                        printf("    3. Despues de un nodo.\n");
-                        printf("    4. Antes de un nodo.\n");
-                        printf("    5. En medio de dos nodos.\n");
-                        printf("    6. En forma ascendente.\n");
-                        printf("    7. En forma descendente.\n\n");
-                        printf("    Ingrese una opcion: "); scanf("%d", &opc);
 
-                        //SWITCH PARA INSERTAR ELEMENTOS
-                            switch(opc){
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-                                case 4:
-                                    break;
-                                case 5:
-                                    break;
-                                case 6:
-                                    break;
-                                case 7:
-                                    break;
-                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                    break;
-                                }
-                        //FIN SWITCH PARA INSERTAR ELEMENTOS
+                    case 2:
+                        insertar_circularDoble();
                         break;
 
                     case 3:
-
-                        printf("\n\n    1. Mostrar el primer elememto.\n");
-                        printf("    2. Mostrar el ultimo elemento.\n");
-                        printf("    3. Mostrar todos los elementos.\n");
-                        printf("    4. Mostrar el anterior elemento a un nodo dado.\n\n");
+                        printf("    1. Mostrar en forma ascendente.\n");
+                        printf("    2. Mostrar en forma descendente.\n");
                         printf("    Ingrese una opcion: "); scanf("%d", &opc);
 
                         //SWITCH PARA MOSTRAR ELEMENTOS
                             switch(opc){
                                 case 1:
+                                    imprimir_asc();
                                     break;
+
                                 case 2:
+                                    imprimir_desc();
                                     break;
-                                case 3:
-                                    break;
-                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                }
+
+                                default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n"); }
                         //FIN SWITCH PARA MOSTRAR ELEMENTOS
                         break;
 
                     case 4:
+                        buscar_circularSimple();
                         break;
+
                     case 5:
+                        eliminar_circularDoble();
                         break;
+
                     case 6:
+                        editar_circularSimple();
                         break;
+
                     case 7:
+                        vaciar_elementos();
                         break;
+
                     case 8:
+                        lista_vacia(pila);
                         break;
+
                     case 9:
+                        eliminar_lista();
                         break;
                     case 0:
                         menu();
                         break;
+
                     default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                         break;
                 }
@@ -392,72 +361,47 @@ void menu(){
                 printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
                 switch(opc){
-                    case 1:
-                        break;
-                    case 2:
-                        printf("\n\n  1. Al inicio.\n");
-                        printf("    2. Al final.\n");
-                        printf("    3. Despues de un nodo.\n");
-                        printf("    4. Antes de un nodo.\n");
-                        printf("    5. En medio de dos nodos.\n");
-                        printf("    6. En forma ascendente.\n");
-                        printf("    7. En forma descendente.\n\n");
-                        printf("    Ingrese una opcion: "); scanf("%d", &opc);
-
-                        switch(opc){
                         case 1:
+                            crear();
                             break;
+
                         case 2:
+                            insertar_cola();
                             break;
+
                         case 3:
+                           imprimir_cola();
                             break;
+
                         case 4:
+                            buscar_elementos();
                             break;
+
                         case 5:
+                            eliminar_elementos();
                             break;
+
                         case 6:
+                            editar();
                             break;
+
                         case 7:
+                            vaciar_elementos();
+                            break;
+
+                        case 8:
+                            lista_vacia(pila);
+                            break;
+
+                        case 9:
+                            eliminar_lista();
+                            break;
+
+                        case 0:
+                            menu();
                             break;
                         default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                             break;
-                        }
-
-                        break;
-                    case 3:
-                        printf("\n\n    1. Mostrar el primer elememto.\n");
-                        printf("    2. Mostrar el ultimo elemento.\n");
-                        printf("    3. Mostrar todos los elementos.\n");
-                        printf("    4. Mostrar el anterior elemento a un nodo dado.\n\n");
-                        printf("    Ingrese una opcion: "); scanf("%d", &opc);
-
-                        switch(opc){
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                        }
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        break;
-                    case 9:
-                        break;
-                    case 0:
-                        menu();
-                        break;
-                    default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                        break;
                 }
                 break;
 
@@ -481,72 +425,13 @@ void menu(){
 
                         switch(opc){
                             case 1:
+                                insertar_listaDoble();
                                 break;
-                            case 2:
-                                printf("\n\n  1. Al inicio.\n");
-                                printf("    2. Al final.\n");
-                                printf("    3. Despues de un nodo.\n");
-                                printf("    4. Antes de un nodo.\n");
-                                printf("    5. En medio de dos nodos.\n");
-                                printf("    6. En forma ascendente.\n");
-                                printf("    7. En forma descendente.\n\n");
-                                printf("    Ingrese una opcion: "); scanf("%d", &opc);
 
-                                //SWITCH PARA INSERTAR ELEMENTOS
-                                    switch(opc){
-                                        case 1:
-                                            break;
-                                        case 2:
-                                            break;
-                                        case 3:
-                                            break;
-                                        case 4:
-                                            break;
-                                        case 5:
-                                            break;
-                                        case 6:
-                                            break;
-                                        case 7:
-                                            break;
-                                        default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                            break;
-                                        }
-                                //FIN SWITCH PARA INSERTAR ELEMENTOS
-                                break;
-                            case 3:
-                                printf("\n\n    1. Mostrar el primer elememto.\n");
-                                printf("    2. Mostrar el ultimo elemento.\n");
-                                printf("    3. Mostrar todos los elementos.\n");
-                                printf("    4. Mostrar el anterior elemento a un nodo dado.\n\n");
-                                printf("    Ingrese una opcion: "); scanf("%d", &opc);
-
-                                //SWITCH PARA MOSTRAR ELEMENTOS
-                                    switch(opc){
-                                        case 1:
-                                            break;
-                                        case 2:
-                                            break;
-                                        case 3:
-                                            break;
-                                        default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
-                                        }
-                                //FIN SWITCH PARA MOSTRAR ELEMENTOS
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
-                            case 8:
-                                break;
-                            case 9:
-                                break;
                             case 0:
                                 menu();
                                 break;
+
                             default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                                 break;
                         }
@@ -570,19 +455,7 @@ void menu(){
                     switch(opc){
                         case 0:
                             menu();
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
-                        case 6:
-                            break;
+
                         default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                             break;
                     }
@@ -599,140 +472,401 @@ void menu(){
         }while(salir!=0);
 }
 
-//FUNCIONES DE LISTAS LIFO O PILAS:
+//************************************************************************************
 
-void crear_pila (){
+
+//FUNCIONES GENERALES:
+
+void crear (){
     printf("\n\n LA PILA SE INICIO CORRECTAMENTE.\n\n");
 }
 
-void insertar_pila (nodo *&pila, int n){
+bool lista_vacia(nodo *pila){
+    return (pila==NULL)?true: false;
+}
+
+void buscar_elementos (){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
+    if(pila != NULL){
+        while (primero != NULL){
+            if(primero->dato == buscar){
+                printf("\n El numero (%d) se encuentra en la lista! \n\n");
+                encontrado=true; }
+            primero = primero->siguiente;
+        }
+
+    }
+    if(encontrado=false){
+        printf("\n  El numero buscado no se encuentra en la pila! \n\n");
+    }else{
+        printf("\n  La pila esta vacia! \n"); }
+
+}
+
+void eliminar_elementos (){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    nodo *anterior = reservar_memoria;
+    anterior = NULL;
+
+
+    printf("\n  Ingrese el dato que desea eliminar: "); scanf("%d", &buscar);
+    if(primero != NULL){
+        while(pila != NULL && encontrado != true){
+            if(pila->dato == buscar){
+                if(pila == primero){
+                    primero = primero->siguiente;
+                }else{
+                    anterior->siguiente = pila->siguiente;
+                }
+                printf("\n  El numero (%d) ha sido borrado con exito. ", buscar);
+                encontrado = true;
+            }
+            anterior = pila;
+            pila = pila->siguiente;
+        }
+        if(encontrado==false){
+            printf("\n  El numero buscado no se encuentra en la pila! \n\n");
+        }else{
+            free(anterior);
+        }
+    }else{
+        printf("\n  La pila esta vacia. \n\n");
+    }
+}
+
+void editar (){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    printf("\n  Ingrese el numero que desea editar de la pila: "); scanf("%d", &buscar);
+
+    if(pila != NULL){
+        while(primero != NULL){
+            if(primero->dato == buscar){
+                printf("\n  El numero ( %d ) se encuentra en la pila.", buscar);
+                printf("\n  Ingrese el nuevo numero: "); scanf("%d", &primero->dato);
+                printf("\n  Editado con exito!\n");
+                encontrado = true;
+            }
+            primero = primero->siguiente;
+        }
+        if(encontrado==false){
+            printf("\n  El numero (%d) no se encuentra en la pila. ", buscar);
+        }
+    }else{
+        printf("\n  La pila esta vacia. \n\n");
+    }
+}
+
+void vaciar_elementos(){
+}
+
+void eliminar_lista(){
+}
+
+
+
+
+
+//FUNCIONES DE LISTAS LIFO O PILAS:
+void insertar_pila (){
     nodo *nuevo_nodo = reservar_memoria;
-    nuevo_nodo->dato = n;
+    printf("    Que numero desea insertar en la pila? \n\n");
+    scanf("%d", &nuevo_nodo->dato);
     nuevo_nodo->siguiente = pila;
     pila = nuevo_nodo;
 }
 
-void imprimir_pila (nodo *&pila){
-    while(pila_vacia(pila)!= true);{
-        printf("%d",pila -> dato);
-        pila = pila -> siguiente; }
+void imprimir_pila (){
+    nodo *pila_real = reservar_memoria;
+    pila_real = pila;
+    if(pila != NULL){
+        while(pila_real != NULL);{
+            printf("    %d", pila_real -> dato);
+            pila_real = pila_real -> siguiente; }
+    }else{
+        printf("\n  La pila esta vacia! \n\n"); }
 }
 
-void buscar_pila (nodo *pila){
-
-    int datobuscado;
-    bool encontrado;
-
-    nodo *primero = reservar_memoria;
-    primero = pila;
-
-    if(pila!=NULL){
-        while (primero!=NULL){
-        if(primero->dato == datobuscado){
-                encontrado = true;
-            }
-                primero = primero->siguiente;
-        }
-
-    }else{  printf("\n  PILA VACIA!\n");}
-
-    if(encontrado){
-        printf("\nEL DATO BUSCADO SE ENCUENTRA EN LA PILA!");
-    }
-}
-
-void eliminar_elementos_pila (nodo *&pila, int &n){
-    nodo *aux = pila;
-    n = aux->dato;
-    pila = aux->siguiente;
-    free(aux);
-}
-
-void editar_pila (){
-}
-
-void vaciar_elementos_pila (){
-}
-
-bool pila_vacia(nodo *&pila){
-    return (pila==NULL)?true: false;
-}
-
-void eliminar_pila (){
-}
 
 
 // FUNCIONES PARA LAS LISTAS FIFO O COLAS:
+void insertar_cola (){
 
-void crear_cola(){
-    printf("\n\n    LA COLA SE INCIO CORRECTAMENTE!\n\n");
-}
-
-void insertar_cola (nodo *&inicio, nodo *&fin, int n){
     nodo *nuevo_nodo = reservar_memoria;
-    nuevo_nodo->dato = n;
-    nuevo_nodo->siguiente = NULL;
-    if(cola_vacia(inicio)){
+
+    printf("\n\n    Insertar el numero que desea ingresar: "); scanf("%d", &nuevo_nodo->dato);
+
+    if(lista_vacia(inicio)){
         inicio = nuevo_nodo;
-    }else{ fin->siguiente = nuevo_nodo; }
-    fin = nuevo_nodo;
+        inicio->siguiente = NULL;
+        fin=nuevo_nodo;
+    }else{
+        fin->siguiente = nuevo_nodo;
+        nuevo_nodo->siguiente=NULL;
+        fin = nuevo_nodo; }
+
+    printf("\n  Ingresado con exito! \n\n");
 }
 
-void imprimir_cola (nodo *&inicio, nodo *&fin){
-    while(cola_vacia(inicio)!=true){
-        printf("%d", inicio->dato);
-        inicio=inicio->siguiente;
+void imprimir_cola (){
+
+    if(inicio != NULL){
+        while(lista_vacia(inicio)!=true){
+            printf("    %d", inicio->dato);
+            inicio=inicio->siguiente;
+        }
+    }else{  printf("\n  La cola esta vacia. \n\n"); }
+}
+
+//FUNCIONES PARA LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS
+void insertar_circularSimple(){
+
+    nodo* nuevo_nodo = reservar_memoria;
+
+    printf("\n\n    Insertar el numero que desea ingresar: "); scanf("%d", &nuevo_nodo->dato);
+
+    if(lista_vacia(inicio)){
+        inicio = nuevo_nodo;
+        inicio->siguiente = NULL;
+        fin=nuevo_nodo;
+    }else{
+        fin->siguiente = nuevo_nodo;
+        nuevo_nodo->siguiente=NULL;
+        fin = nuevo_nodo; }
+
+    printf("\n  Ingresado con exito! \n\n");
+}
+
+void imprimir_circularSimple(){
+
+    if(primero != NULL){
+        do{
+            printf("\n  %d", inicio->dato);
+            inicio=inicio->siguiente;
+        }while(inicio!=primero);
+    }else{
+        printf("\n  La lista circular esta vacia! \n\n");
     }
 }
 
-bool buscar_cola (nodo *&inicio, nodo *&fin, int n){
+void buscar_circularSimple(){
 
-    bool encontrado = false;
-    nodo *primero = reservar_memoria;
-    primero = inicio;
+    int buscar=0;
+    bool encontrado=false;
 
-    if(cola_vacia(inicio) != true){
-        while (primero != fin){
-            if(primero->dato == n){
+    printf("\n  Ingrese el numero que desea buscar: "); scanf("%d", &buscar);
+
+    if(primero != NULL){
+        do{
+            if(inicio->dato == buscar){
+                printf("\n\n El numero ( %d ) se encuentra en la lista. ", buscar);
                 encontrado=true;
             }
-        primero = primero->siguiente;
+            inicio=inicio -> siguiente;
         }
-    }
-    return encontrado;
-}
-
-void eliminar_elementos_cola (nodo *&inicio, nodo *&fin, int &n){
-    n = inicio->dato;
-    nodo *aux = inicio;
-    if(inicio==fin){
-        inicio=NULL;
-        fin=NULL;
-    }else{ inicio=inicio->siguiente; }
-    free(aux);
-}
-
-void editar_cola(){
-}
-
-void vaciar_elementos_cola (){
-}
-
-bool cola_vacia(nodo *&inicio){
-    return (inicio==NULL)? true:false;
-    printf("Pila vacia");
-}
-
-void eliminar_cola (int dato){
-
-    nodo *inicio=NULL;
-    nodo *fin=NULL;
-
-    printf("\n ELIMINANDO ELEMENTOS DE LA COLA.\n\n");
-    while (inicio != NULL){
-        eliminar_elementos_cola(inicio,fin,dato);
-        if (inicio!=NULL){
-            printf("%d , ", dato);
-        }else{ printf("%d . ", dato); }
+        while(inicio != primero && encontrado != true);
+            if(encontrado == false){
+                printf("\n  El numero (%d) no se encuentra en la lista.\n\n");
+            }
+    }else{
+        printf("\n  La lista circular esta vacia! \n\n");
     }
 }
+
+void editar_circularSimple(){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    printf("\n  Ingrese el numero que desea editar: "); scanf("%d", &buscar);
+    if(primero != NULL){
+        do{
+            if(inicio->dato == buscar){
+                printf("\n\n El numero ( %d ) se encuentra en la lista. ", buscar);
+                printf("\n  Ingrese el nuevo numero: "); scanf("%d", &inicio->dato);
+                printf("\n  El numero (%d) se modifico con exito! \n\n");
+                encontrado = true;
+            }
+            inicio=inicio -> siguiente;
+        }while(inicio != primero && encontrado != true);
+        if(encontrado == false){
+            printf("\n  El numero (%d) no se encuentra en la lista.\n\n");
+            }
+    }else{
+        printf("\n  La lista circular esta vacia! \n\n");
+    }
+}
+
+void eliminar_circularSimple(){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    nodo* anterior = reservar_memoria;
+    anterior = NULL;
+
+
+    printf("\n  Ingrese el dato del nodo que desea eliminar: "); scanf("%d", &buscar);
+
+    if(primero != NULL){
+
+        do{
+            if(inicio->dato == buscar){
+                if(inicio == primero){
+                    primero = primero -> siguiente;
+                    fin -> siguiente = primero;
+                }else if(inicio == fin){
+                    anterior -> siguiente = primero;
+                    fin = anterior;
+                }else{ anterior -> siguiente = inicio -> siguiente; }
+
+                printf("\n  El numero (%d) ha sido eliminado con exito! \n\n");
+                encontrado = true;
+            }
+            anterior = inicio;
+            inicio = inicio -> siguiente;
+        }while(inicio != primero && encontrado != true);
+
+        if(encontrado == false){
+            printf("\n  El numero (%d) no se encuenta \n");
+        }else{ free(anterior); }
+    }else{ printf("\n   La lista circular esta vacia! \n\n"); }
+}
+
+
+//FUNCIONES PARA LISTAS CIRCULARES DOBLEMENTE ENLAZADAS
+void insertar_circularDoble(){
+    nodo* nuevo_nodo = reservar_memoria;
+
+    printf("\n  Inserte el numero que desea ingresar: "); scanf("%d", &nuevo_nodo->dato);
+
+    if(inicio == NULL){
+        inicio = nuevo_nodo;
+        inicio -> siguiente = inicio;
+        fin = inicio;
+        inicio -> atras = fin;
+    }else{
+        fin -> siguiente = nuevo_nodo;
+        nuevo_nodo -> siguiente = inicio;
+        nuevo_nodo -> atras = fin;
+        fin = nuevo_nodo;
+        inicio -> atras = fin; }
+
+    printf("\n  Ingresado con exito! \n\n");
+}
+
+void imprimir_asc(){
+
+    nodo *primero = (nodo*) malloc(sizeof(nodo));
+    primero = inicio;
+
+    if(inicio != NULL){
+        do{
+            printf("\n     %d", primero -> dato);
+            primero = primero -> siguiente;
+        }while(primero != inicio);
+    }else{
+        printf("\n La lista circular doble esta vacia! \n\n");
+    }
+}
+
+void imprimir_desc(){
+
+    if(inicio != NULL){
+        do{
+            printf("\n     %d", primero -> dato);
+            primero = primero -> atras;
+        }while(primero != inicio);
+    }else{
+        printf("\n La lista circular doble esta vacia! \n\n");
+    }
+}
+void eliminar_circularDoble(){
+
+    int buscar=0;
+    bool encontrado=false;
+
+    nodo* anterior = reservar_memoria;
+    anterior = NULL;
+
+
+    printf("\n  Ingrese el dato del nodo que desea eliminar: "); scanf("%d", &buscar);
+
+    if(primero != NULL){
+        do{
+            if(inicio->dato == buscar){
+                if(inicio == primero){
+                    primero = primero -> siguiente;
+                    primero -> atras = fin;
+                    fin -> siguiente = primero;
+                }else if(inicio == fin){
+                    fin = anterior;
+                    fin -> siguiente = primero;
+                    primero -> atras = fin;
+                }else{
+                    anterior -> siguiente = inicio -> siguiente;
+                    inicio -> siguiente -> atras = anterior;
+                }
+                printf("\nEL NODO HA SIDO BORRADO CON EXITO\n");
+                encontrado = 1;
+            }
+            anterior = inicio;
+            inicio = inicio -> siguiente;
+        }while(inicio != primero && encontrado != true);
+        if(encontrado == false){
+            printf("\n\nEL NODO NO HA SIDO ENCONTRADO\n");
+        }else{
+            free(anterior);
+        }
+    }else{
+        printf("\n\nLA LISTA DOBLE CIRCULAR SE ENCUENTRA VACIA");
+    }
+}
+
+
+//FUNCIONES LISTAS DOBLEMENTE ENLAZADAS
+void insertar_listaDoble(){
+
+    nodo* nuevo_nodo = reservar_memoria;
+
+    printf("\n  Inserte el numero que desea insertar: "); scanf("%d", &nuevo_nodo->dato);
+
+    if(inicio == NULL){
+        inicio = nuevo_nodo;
+        inicio -> siguiente = NULL;
+        inicio->atras = NULL;
+        fin = inicio;
+    }else{
+        fin -> siguiente = nuevo_nodo;
+        nuevo_nodo -> siguiente = NULL;
+        nuevo_nodo -> atras = fin;
+        fin = nuevo_nodo;
+    }
+    printf("\n Ingresado con exito! \n\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
