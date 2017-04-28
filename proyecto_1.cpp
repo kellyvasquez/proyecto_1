@@ -26,25 +26,30 @@ void insertar_pila ();
 void imprimir_pila ();
 
 
-/*FUNCIONES LISTAS FIFO O COLAS:    */
+/* FUNCIONES LISTAS FIFO O COLAS Y ANEXAS A LISTAS SIMPLEMENTE ENLAZADAS:    */
 void insertar_cola ();
 void imprimir_cola ();
 
-/*FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS   */
+/* FUNCIONES LISTAS CIRCULARES SIMPLEMENTE ENLAZADAS   */
 void insertar_circularSimple();
 void imprimir_circularSimple();
 void buscar_circularSimple();
 void editar_circularSimple();
 void eliminar_circularSimple();
 
-/*FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS  */
+/* FUNCIONES LISTAS CIRCULARES DOBLEMENTE ENLAZADAS  */
 void insertar_circularDoble();
 void imprimir_asc();
 void imprimir_desc();
 void eliminar_circularDoble();
 
-/*FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
+/* FUNCIONES LISTAS DOBLEMENTE ENLAZADAS */
 void insertar_listaDoble();
+void imprimir_asc_listaDoble();
+void imprimir_desc_listaDoble();
+void buscar_listaDoble();
+void editar_listaDoble();
+void eliminar_listaDoble();
 
 void menu();
 
@@ -79,7 +84,7 @@ void menu(){
             case 1: //MENU LISTAS LIFO
 
             system("cls");
-            printf("\n  ********** MENU LISTAS LIFO **********\n\n");
+        do{ printf("\n  ********** MENU LISTAS LIFO **********\n\n");
             printf("  1. Crear lista. \n");
             printf("  2. Insertar elementos. \n");
             printf("  3. Imprimir elementos. \n");
@@ -88,7 +93,7 @@ void menu(){
             printf("  6. Editar elementos. \n");
             printf("  7. Vaciar elementos. \n");
             printf("  8. Lista vacia. \n");
-            printf("  9. Eliminar lista. \n\n");
+            printf("  9. Eliminar lista. \n");
             printf("  0. Volver al menu anterior. \n\n");
             printf("  Ingrese una opcion: "); scanf("%d", &opc);
 
@@ -131,12 +136,14 @@ void menu(){
                     break;
 
                 case 0:
+                    system("cls");
                     menu();
                     break;
 
                 default: printf("\n LA OPCION INGRESADA NO ES VALIDA. \n\n");
                     break;
                 }
+        }while(opc!=0);
                 break;
 
 //********************************************************************************************
@@ -577,22 +584,28 @@ void eliminar_lista(){
 //FUNCIONES DE LISTAS LIFO O PILAS:
 
 void insertar_pila (){
+    int n=1;
     nodo *nuevo_nodo = reservar_memoria;
-    printf("    Que numero desea insertar en la pila? \n\n");
-    scanf("%d", &nuevo_nodo->dato);
+    while(n==1){
+        printf("\n\n   Que numero desea insertar en la pila?:  "); scanf("%d", &nuevo_nodo->dato);
+        printf("\n  Desea ingresar otro numero? Presione (1-SI) o (0-NO): "); scanf("%d", &n);
+    }
     nuevo_nodo->siguiente = pila;
     pila = nuevo_nodo;
 }
 
 void imprimir_pila (){
-    nodo *pila_real = reservar_memoria;
-    pila_real = pila;
+
+    nodo* actual = (nodo*) malloc(sizeof(nodo));
+    actual = pila;
     if(pila != NULL){
-        while(pila_real != NULL);{
-            printf("    %d", pila_real -> dato);
-            pila_real = pila_real -> siguiente; }
+        while(actual != NULL){
+            printf("\n     %d", actual -> dato);
+            actual = actual -> siguiente;
+        }
     }else{
-        printf("\n  La pila esta vacia! \n\n"); }
+        printf("\n\nLA PILA SE ENCUENTRA VACIA");
+    }
 }
 
 
@@ -911,7 +924,7 @@ void editar_listaDoble(){
     }else{ printf("\n   La lista doblemente enlazada esta vacia! \n\n"); }
 }
 
-void eliminarNodo(){
+void eliminar_listaDoble(){
 
     nodo* anterior = (nodo*) malloc(sizeof(nodo));
     anterior = NULL;
